@@ -9,26 +9,24 @@ class AddNetworksAuth extends Migration
 {
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->nullable()->change();
-            $table->string('password')->nullable()->change();
+        Schema::create('user_networks', function (Blueprint $table) {
+            $table->integer('user_id')->unsigned();
+            $table->string('network', 100);
+            $table->string('identity', 100);
+            $table->primary(['user_id', 'identity']);
+
         });
 
-        Schema::create('user_networks', function (Blueprint $table) {
-            $table->integer('user_id')->references('id')->on('users')->onDelete('CASCADE');
-            $table->string('network');
-            $table->string('identity');
-            $table->primary(['user_id', 'identity']);
+        Schema::table('user_networks', function($table) {
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('CASCADE');
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('user_networks');
-
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('email')->change();
-            $table->string('password')->change();
+        Schema::table('user_networks', function (Blueprint $table) {
+            $table->dropForeign('user_networks_user_id_foreign');
+            $table->dropIfExists('user_networks');
         });
     }
 }

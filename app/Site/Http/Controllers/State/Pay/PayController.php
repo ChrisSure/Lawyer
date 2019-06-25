@@ -18,7 +18,7 @@ class PayController extends Controller
             'amount'         => session('state_sum'),
             'currency'       => 'UAH',
             'description'    => 'Lawyer',
-            'order_id'       => session('state_id'),
+            'order_id'       => 234524,//session('state_id'),
             'version'        => '3',
             'sandbox' => 1,
             'result_url' => route('state.end'),
@@ -36,7 +36,7 @@ class PayController extends Controller
 
         $data_decode = base64_decode(json_decode($data));*/
         //if ($signature === $my_sign) {
-            $state = State::findOrFail(14);
+            $state = State::findOrFail(20);
             $state->paid();
         //}
     }

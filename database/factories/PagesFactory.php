@@ -24,5 +24,7 @@ $factory->define(Pages::class, function (Faker $faker) {
         'text' => $faker->text,
         'description' => $faker->text,
         'status' => $active ? Pages::STATUS_ACTIVE : Pages::STATUS_WAIT,
+        'created_at' => $faker->dateTime(),
+        'updated_at' => $faker->dateTime()
     ];
 });

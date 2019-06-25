@@ -18,11 +18,17 @@ use Illuminate\Support\Str;
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 $factory->define(Profile::class, function (Faker $faker) {
+
+    static $number = 1;
+
     return [
+        'user_id' => $number ++,
         'firstname' => $faker->name,
         'lastname' => $faker->name,
         'surname' => $faker->name,
         'address' => $faker->name,
         'phone' => $faker->name,
+        'created_at' => $faker->dateTime(),
+        'updated_at' => $faker->dateTime()
     ];
 });
