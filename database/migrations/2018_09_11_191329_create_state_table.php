@@ -15,7 +15,7 @@ class CreateStateTable extends Migration
     {
         Schema::create('state', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable();
             $table->string('path', 200);
             $table->integer('sum');
             $table->string('status', 16);
